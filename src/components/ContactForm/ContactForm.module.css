@@ -1,6 +1,7 @@
 label {
     display: flex;
     flex-direction: column;
+    font-weight: 600;
     max-width: 200px;
     padding-bottom: 10px;
 }
@@ -25,5 +26,6 @@ button:hover {
     width: 300px;
     padding: 20px;
     display: block;
-    border: 1px solid #477405;
+    border: 2px solid #16064e;
+    text-shadow: 0 0 15px #b8b9db;
 }

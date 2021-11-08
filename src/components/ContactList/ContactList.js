@@ -1,16 +1,21 @@
-import PropTypes from 'prop-types';
 import s from './ContactList.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { getFilterContacts } from '../../redux/phoneBook/phonebook-selector';
+import { DeleteContact } from '../../redux/phoneBook/phonebook-action';
 
-export default function ContactList({ contacts, onDeleteContact }) {
+export default function ContactList() {
+    const contacts = useSelector(getFilterContacts);
+
+    const dispatch = useDispatch();
     return (
-        <ul>
+        <ul className={s.list}>
             {contacts.map(({ id, name, number }) => (
                 <li key={id}>
-                    {`${name}: ${number}`}
+                    <span className={s.text}>{`${name}: ${number}`}</span>
                     <button
                         className={s.buttonDelete}
                         type="button"
-                        onClick={() => onDeleteContact(id)}
+                        onClick={() => dispatch(DeleteContact(id))}
                     >
                         Delete
                     </button>
@@ -19,8 +24,3 @@ export default function ContactList({ contacts, onDeleteContact }) {
         </ul>
     );
 }
-
-ContactList.propTypes = {
-    contacts: PropTypes.array,
-    onDeleteContact: PropTypes.func.isRequired,
-};
