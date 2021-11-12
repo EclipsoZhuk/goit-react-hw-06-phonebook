@@ -1,6 +1,5 @@
-export const getFilter = state => state.phonebook.filterReducer;
-
-export const getContacts = state => state.phonebook.contactsReducer;
+export const getContacts = state => state.contacts.contactsReducer;
+export const getFilter = state => state.contacts.filterReducer;
 
 export const getFilterContacts = state => {
     const lowerCaseFilter = getFilter(state).toLowerCase();

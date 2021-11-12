@@ -1,10 +1,14 @@
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addContact } from '../../redux/phoneBook/phonebook-action';
+import { getContacts } from '../../redux/phoneBook/phonebook-selector';
 import s from './ContactForm.module.css';
-import PropTypes from 'prop-types';
 
-export default function ContactForm({ onSubmitData }) {
+export default function ContactForm() {
     const [name, setName] = useState('');
     const [number, setNumber] = useState('');
+    const contacts = useSelector(getContacts);
+    const dispatch = useDispatch();
 
     const handleChange = e => {
         const { name, value } = e.target;
@@ -22,13 +26,21 @@ export default function ContactForm({ onSubmitData }) {
 
     const handleSubmit = e => {
         e.preventDefault();
-        onSubmitData(name, number);
-        reset();
-    };
-
-    const reset = () => {
-        setName('');
-        setNumber('');
+        if (
+            contacts.find(
+                contact => contact.name.toLowerCase() === name.toLowerCase(),
+            )
+        ) {
+            alert(`${name} is already in contacts.`);
+        } else if (contacts.find(contact => contact.number === number)) {
+            alert(`${number} is already in contacts.`);
+        } else if (!name.trim() || !number.trim()) {
+            alert("Enter the contact's name and number phone!");
+        } else {
+            dispatch(addContact({ name, number }));
+            setName('');
+            setNumber('');
+        }
     };
 
     return (
@@ -64,7 +76,3 @@ export default function ContactForm({ onSubmitData }) {
         </div>
     );
 }
-
-ContactForm.propTypes = {
-    onSubmitData: PropTypes.func.isRequired,
-};
