@@ -32,7 +32,7 @@ const rootReducer = combineReducers({
 const contactsPersistConfig = {
     key: 'contacts',
     storage,
-    blacklist: ['filter'],
+    blacklist: ['filterReducer'],
 };
 
 const middleware = [
