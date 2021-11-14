@@ -1,10 +1,9 @@
 import s from './ContactList.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { getFilterContacts } from '../../redux/phoneBook/phonebook-selector';
-import { deleteContact } from '../../redux/phoneBook/phonebook-action';
+import { phonebookAction, phonebookSelector } from '../../redux/phoneBook';
 
 export default function ContactList() {
-    const contacts = useSelector(getFilterContacts);
+    const contacts = useSelector(phonebookSelector.getFilterContacts);
     const dispatch = useDispatch();
 
     return (
@@ -15,7 +14,9 @@ export default function ContactList() {
                     <button
                         className={s.buttonDelete}
                         type="button"
-                        onClick={() => dispatch(deleteContact(id))}
+                        onClick={() =>
+                            dispatch(phonebookAction.deleteContact(id))
+                        }
                     >
                         Delete
                     </button>

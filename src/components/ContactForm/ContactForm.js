@@ -1,13 +1,12 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from '../../redux/phoneBook/phonebook-action';
-import { getContacts } from '../../redux/phoneBook/phonebook-selector';
+import { phonebookAction, phonebookSelector } from '../../redux/phoneBook';
 import s from './ContactForm.module.css';
 
 export default function ContactForm() {
     const [name, setName] = useState('');
     const [number, setNumber] = useState('');
-    const contacts = useSelector(getContacts);
+    const contacts = useSelector(phonebookSelector.getContacts);
     const dispatch = useDispatch();
 
     const handleChange = e => {
@@ -37,7 +36,7 @@ export default function ContactForm() {
         } else if (!name.trim() || !number.trim()) {
             alert("Enter the contact's name and number phone!");
         } else {
-            dispatch(addContact({ name, number }));
+            dispatch(phonebookAction.addContact({ name, number }));
             setName('');
             setNumber('');
         }
