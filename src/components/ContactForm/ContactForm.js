@@ -48,6 +48,7 @@ export default function ContactForm() {
                 <label>
                     Name
                     <input
+                        className={s.formInput}
                         type="text"
                         name="name"
                         pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -60,6 +61,7 @@ export default function ContactForm() {
                 <label>
                     Number
                     <input
+                        className={s.formInput}
                         type="tel"
                         name="number"
                         pattern="(\+?( |-|\.)?\d{1,2}( |-|\.)?)?(\(?\d{3}\)?|\d{3})( |-|\.)?(\d{3}( |-|\.)?\d{4})"

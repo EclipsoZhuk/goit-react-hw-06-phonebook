@@ -5,7 +5,10 @@ body {
         'Helvetica Neue', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: rgb(252, 215, 215);
+    background-image: url(./images/bgImages.jpg);
+    background-position: center -100px;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 code {
